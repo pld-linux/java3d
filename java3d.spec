@@ -1,5 +1,5 @@
-Summary:	Low level 3D scene-graph based graphics programming API for the java language.
-Summary(pl):	Niskopoziomowe API programowania trójwymiarowych scen dla javy.
+Summary:	Low level 3D scene-graph based graphics programming API for the Java language
+Summary(pl):	Niskopoziomowe API programowania trójwymiarowych scen dla Javy
 Name:		java3d
 Version:	1.3.1
 Release:	1
@@ -7,17 +7,17 @@ License:	restricted, non-distributable
 Group:		Libraries
 Source0:	ftp://ftp.tux.org/pub/java/java3d/1.3.1/i386/fcs/%{name}-re-%{version}-linux-i386.bin
 # NoSource0-md5:	c79557ec7da5fa7dac742c35fd721350
-Requires:	java
+Requires:	jre
 # Other archs also supported, but I don't care.
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Low level 3D scene-graph based graphics programming API for the java
+Low level 3D scene-graph based graphics programming API for the Java
 language.
 
 %description -l pl
-Niskopoziomowe API programowania trójwymiarowych scen dla javy.
+Niskopoziomowe API programowania trójwymiarowych scen dla Javy.
 
 %prep
 %setup -q -c -T
