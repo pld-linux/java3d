@@ -7,7 +7,8 @@ License:	restricted, non-distributable
 Group:		Libraries
 Source0:	ftp://ftp.tux.org/pub/java/java3d/1.3.1/i386/fcs/%{name}-re-%{version}-linux-i386.bin
 # NoSource0-md5:	c79557ec7da5fa7dac742c35fd721350
-Requires:	jre
+URL:		http://java.sun.com/products/java-media/3D/index.jsp 
+Requires:	jre >= 1.4.1
 # Other archs also supported, but I don't care.
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
