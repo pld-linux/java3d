@@ -1,16 +1,26 @@
 Summary:	Low level 3D scene-graph based graphics programming API for the Java language
 Summary(pl):	Niskopoziomowe API programowania trójwymiarowych scen dla Javy
 Name:		java3d
-Version:	1.3.1
+Version:	1.3.2
 Release:	1
-License:	restricted, non-distributable
+License:	Sun Binary Code License (restricted, non-distributable)
 Group:		Libraries
-Source0:	ftp://ftp.tux.org/pub/java/java3d/1.3.1/i386/fcs/%{name}-re-%{version}-linux-i386.bin
-# NoSource0-md5:	c79557ec7da5fa7dac742c35fd721350
-URL:		http://java.sun.com/products/java-media/3D/index.jsp 
-Requires:	jre >= 1.4.1
-# Other archs also supported, but I don't care.
-ExclusiveArch:	%{ix86}
+# Download URL: https://java3d.dev.java.net/binary-builds.html
+Source0:	http://download.java.net/media/java3d/builds/release/1.3.2/java3d-1_3_2-linux-i586.zip
+# NoSource0-md5:	0d959d0be83eb60c9c135ae809caefb2
+Source1:	http://download.java.net/media/java3d/builds/release/1.3.2/java3d-1_3_2-linux-amd64.zip
+# NoSource1-md5:	bf2f39d332299f2aceb43cbad9a70428
+Source2:	http://download.java.net/media/java3d/builds/release/1.3.2/java3d-1_3_2-doc.tar.gz
+# NoSource2-md5:	9466da51587a0fc104b8243db100382e
+NoSource:	0
+NoSource:	1
+NoSource:	2
+URL:		https://java3d.dev.java.net/
+Requires:	OpenGL >= 1.2
+Requires:	OpenGL-GLX >= 1.3
+Requires:	jre >= 1.4.2
+ExclusiveArch:	%{ix86} %{x8664}
+ExcludeArch:	i386 i486
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -20,28 +30,50 @@ language.
 %description -l pl
 Niskopoziomowe API programowania trójwymiarowych scen dla Javy.
 
-%prep
-%setup -q -c -T
-install %{SOURCE0} .
+%package doc
+Summary:	Java3D documentation
+Summary(pl):	Dokumentacja biblioteki Java3D
+Group:		Documentation
 
-%build
-export MORE=10000
-sh java3d-re-%{version}-linux-i386.bin << EOF
-yes
-EOF
+%description doc
+Java3D documentation.
+
+%description doc -l pl
+Dokumentacja biblioteki Java3D.
+
+%prep
+%ifarch %{ix86}
+%setup -q -n java3d-1_3_2-linux-i586 -a2
+%endif
+%ifarch %{x8664}
+%setup -q -n java3d-1_3_2-linux-amd64 -T -b1 -a2
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/java/jre/lib/{ext,i386}
+install -d $RPM_BUILD_ROOT%{_libdir}/java/jre
 
-install lib/ext/* $RPM_BUILD_ROOT%{_libdir}/java/jre/lib/ext
-install lib/i386/* $RPM_BUILD_ROOT%{_libdir}/java/jre/lib/i386
+%ifarch %{ix86}
+unzip j3d-132-linux-x86.zip -d $RPM_BUILD_ROOT%{_libdir}/java/jre
+%endif
+%ifarch %{x8664}
+unzip j3d-132-linux-amd64.zip -d $RPM_BUILD_ROOT%{_libdir}/java/jre
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE-Java3D README-Java3D
-%{_libdir}/java/jre/lib/ext/*
-%{_libdir}/java/jre/lib/i386/*
+%doc BINARY-CODE-LICENSE.txt COPYRIGHT.txt RELEASE-NOTES.html
+%ifarch %{ix86}
+%attr(755,root,root) %{_libdir}/java/jre/lib/i386/lib*.so
+%endif
+%ifarch %{x8664}
+%attr(755,root,root) %{_libdir}/java/jre/lib/amd64/lib*.so
+%endif
+%{_libdir}/java/jre/lib/ext/*.jar
+
+%files doc
+%defattr(644,root,root,755)
+%doc java3d-1_3_2-doc/*
