@@ -1,5 +1,5 @@
 Summary:	Low level 3D scene-graph based graphics programming API for the Java language
-Summary(pl.UTF-8):   Niskopoziomowe API programowania trójwymiarowych scen dla Javy
+Summary(pl.UTF-8):	Niskopoziomowe API programowania trójwymiarowych scen dla Javy
 Name:		java3d
 Version:	1.3.2
 Release:	1
@@ -32,7 +32,7 @@ Niskopoziomowe API programowania trójwymiarowych scen dla Javy.
 
 %package doc
 Summary:	Java3D documentation
-Summary(pl.UTF-8):   Dokumentacja biblioteki Java3D
+Summary(pl.UTF-8):	Dokumentacja biblioteki Java3D
 Group:		Documentation
 
 %description doc
