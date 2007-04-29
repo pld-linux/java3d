@@ -16,6 +16,7 @@ NoSource:	0
 NoSource:	1
 NoSource:	2
 URL:		https://java3d.dev.java.net/
+BuildRequires:	jpackage-utils
 Requires:	OpenGL >= 1.2
 Requires:	OpenGL-GLX >= 1.3
 Requires:	jre >= 1.4.2
@@ -51,13 +52,13 @@ Dokumentacja biblioteki Java3D.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/java/jre
+install -d $RPM_BUILD_ROOT%{java_home}/jre
 
 %ifarch %{ix86}
-unzip j3d-132-linux-x86.zip -d $RPM_BUILD_ROOT%{_libdir}/java/jre
+unzip j3d-132-linux-x86.zip -d $RPM_BUILD_ROOT%{java_home}/jre
 %endif
 %ifarch %{x8664}
-unzip j3d-132-linux-amd64.zip -d $RPM_BUILD_ROOT%{_libdir}/java/jre
+unzip j3d-132-linux-amd64.zip -d $RPM_BUILD_ROOT%{java_home}/jre
 %endif
 
 %clean
@@ -67,12 +68,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc BINARY-CODE-LICENSE.txt COPYRIGHT.txt RELEASE-NOTES.html
 %ifarch %{ix86}
-%attr(755,root,root) %{_libdir}/java/jre/lib/i386/lib*.so
+%attr(755,root,root) %{java_home}/jre/lib/i386/lib*.so
 %endif
 %ifarch %{x8664}
-%attr(755,root,root) %{_libdir}/java/jre/lib/amd64/lib*.so
+%attr(755,root,root) %{java_home}/jre/lib/amd64/lib*.so
 %endif
-%{_libdir}/java/jre/lib/ext/*.jar
+%{java_home}/jre/lib/ext/*.jar
 
 %files doc
 %defattr(644,root,root,755)
