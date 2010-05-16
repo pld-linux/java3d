@@ -18,6 +18,7 @@ NoSource:	2
 URL:		https://java3d.dev.java.net/
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.294
+BuildRequires:	unzip
 Requires:	OpenGL >= 1.2
 Requires:	OpenGL-GLX >= 1.3
 Requires:	jre >= 1.4.2
